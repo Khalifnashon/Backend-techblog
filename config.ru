@@ -1,6 +1,6 @@
 require_relative "./config/environment"
 
-use PostsController
-use UsersController
-use CommentsController
+use ReviewsController
+use ReadersController
+use BlogsController
 run ApplicationController
