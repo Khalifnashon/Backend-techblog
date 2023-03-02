@@ -4,6 +4,17 @@ class ReviewsController < ApplicationController
       reviews = Review.all
       reviews.to_json
     end
+
+    get "/reviews/:id" do
+        count_reviews = Review.where(id: params[:id]).count()
+        if count_reviews > 0
+            reviews = Review.find(params[:id])
+            reviews.to_json
+        else
+            message = {:error => "blog not found"}
+            message.to_json
+        end
+    end
   
     # create a new review
     post '/reviews' do
@@ -12,8 +23,8 @@ class ReviewsController < ApplicationController
       rating = params[:rating]
       blog = params[:blog]
   
-      if comment.present? && user_id.present? && rating.present? && blog_id.present?
-        review = Review.create(comment: comment, rating: rating, blog_id:post , user_id:user)
+      if comment.present? && user.present? && rating.present? && blog.present?
+        review = Review.create(comment: comment, rating: rating, blog_id:blog , reader_id:user)
         if review
           { :success => 'Review created successfully!' }.to_json
         else
