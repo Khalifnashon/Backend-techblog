@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class BlogsController < ApplicationController
     # Routings
     get "/blogs" do
         Blog.all.to_json
@@ -24,25 +24,28 @@ class PostsController < ApplicationController
 
         if (title.present? && body.present? && author.present? && image.present?)
             blog = Blog.create(title: params[:title], body: params[:body], author: params[:author], image: params[:image])
-        if blog
-          message = {:success => "blog created successfully"}
-          message.to_json
-        else
-          message = {:errors => "Error saving blog" }
-          message.to_json
-        end
-    end   
-      
+            if blog
+                message = {:success => "blog created successfully"}
+                message.to_json
+            else
+                message = {:errors => "Error saving blog" }
+                message.to_json
+            end
+        end   
+    end
+    
     delete "/blogs/:id" do
-        blog = Blog.find_by(id: params[:id])
-        if blog
-          blog.destroy
-          status 204 # No content
+        count_blogs = Blog.where(id: params[:id]).count() #Integer 2,3,4,5
+        if count_blogs > 0
+            blog = Blog.find(params[:id])
+            blog.destroy
+            message = {:succcess => "Blog deleted successfully!!"}
+            message.to_json
+
         else
-          status 404 # Not found
+            message = {:error => "Blog does not exist!"}
+            message.to_json
         end
     end
       
-
-
 end
