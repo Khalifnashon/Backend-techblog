@@ -1,5 +1,5 @@
 class Reader < ActiveRecord::Base
-   has_many :reviews
+   has_many :reviews, dependent: :destroy
    has_many :blogs, through: :reviews
 end
 

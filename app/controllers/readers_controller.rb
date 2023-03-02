@@ -5,12 +5,23 @@ class ReadersController < ApplicationController
            readers.to_json
         end
 
+        get "/readers/:id" do
+            count_readers = Reader.where(id: params[:id]).count()
+            if count_readers > 0
+                readers = Reader.find(params[:id])
+                readers.to_json
+            else
+                message = {:error => "blog not found"}
+                message.to_json
+            end
+        end
+
         post "/readers" do
             name = params[:name]
             email = params[:email]
 
             if(name.present? && email.present?)
-                check_email_exists = Review.where(email: email).count() #Integer 2,3,4,5
+                check_email_exists = Reader.where(email: email).count() #Integer 2,3,4,5
                  puts("XXXXXXXXXXXXXXXXX ", check_email_exists)
 
                  if check_email_exists < 1
