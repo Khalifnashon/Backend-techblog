@@ -15,6 +15,31 @@ class BlogsController < ApplicationController
         end
     end
 
+    get "/blogs/:id/reviews" do
+        count_blogs = Blog.where(id: params[:id]).count()
+        if count_blogs > 0
+            blogs = Blog.find(params[:id])
+            blogs = blogs.reviews
+            blogs.to_json(include:{reader:{only: [:name]}})
+            # blogs.to_json(include: { 
+            #     reviews: { 
+            #         include: { 
+            #             reader: { only: [:name] } 
+            #         } 
+            #     } 
+            # })
+        else
+            message = {:error => "blog not found"}
+            message.to_json
+        end
+    end
+
+    get '/app_reviews' do
+        AppReview.all.to_json(only: [:comment], include: {user: {only: [:id, :username]}})
+    end
+
+
+
     # add new blog
     post "/blogs" do
         title = params[:title]
