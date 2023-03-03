@@ -1,5 +1,7 @@
 # Backend-techblog
 # TechBlog API
+#### 01/03/2023
+#### By Khalif Nhashon
 
 This is the API for TechBlog, a blogging platform for technology enthusiasts. The API is built using Sinatra, a lightweight Ruby web framework. It provides endpoints to create, read, update, and delete blog posts, as well as to read reviews for each blog post.
 
@@ -12,6 +14,10 @@ To get started with the TechBlog API, follow the steps below:
     - Run the database migrations: rake db:migrate
     - Start the server: rackup config.ru
     - You should now be able to access the API at http://localhost:9292.
+
+    #### Requirement
+    React app
+    link to react app:https://techxtrablog.netlify.app/
 
 ## Endpoints
 The following endpoints are available in the TechBlog API:
