@@ -17,7 +17,7 @@ To get started with the TechBlog API, follow the steps below:
 
     #### Requirement
     React app
-    link to react app:https://techxtrablog.netlify.app/
+    link to react app: [https://techxtrablog.netlify.app]
 
 ## Endpoints
 The following endpoints are available in the TechBlog API:
