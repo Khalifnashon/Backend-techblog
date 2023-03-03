@@ -24,21 +24,14 @@ The following endpoints are available in the TechBlog API:
 
 #### Reviews
     - GET /blogs/:id/reviews: Returns a list of all reviews for the blog post with the specified ID.
+    - POST /blogs/:id/reviews : Creates a new review for the blog post with the specified ID. The request body should include the following parameters:
+    comment: the comment left by the reader (required)
+    rating: the rating given by the reader (required)
+    reader_id: the ID of the reader leaving the review (required)
+    - DELETE /blogs/:id/reviews/:review_id :Deletes the review with the specified ID for the blog post with the specified ID.
 
-POST /blogs/:id/reviews
-Creates a new review for the blog post with the specified ID. The request body should include the following parameters:
-
-comment: the comment left by the reader (required)
-rating: the rating given by the reader (required)
-reader_id: the ID of the reader leaving the review (required)
-PUT /blogs/:id/reviews/:review_id
-Updates an existing review with the specified ID for the blog post with the specified ID. The request body should include the same parameters as the POST /blogs/:id/reviews endpoint.
-
-DELETE /blogs/:id/reviews/:review_id
-Deletes the review with the specified ID for the blog post with the specified ID.
-
-Authentication
+## Authentication
 The TechBlog API does not currently support authentication or authorization. Anyone can create, read, update, and delete blog posts and reviews. This is intentional, as the focus of the API is to provide a simple way to interact with the data for development and learning purposes.
 
-Conclusion
+## Conclusion
 The TechBlog API provides a simple way to interact with blog post and review data for technology enthusiasts. The endpoints are straightforward and easy to use, and the lack of authentication and authorization makes it easy to get started with the API for development and learning purposes.
